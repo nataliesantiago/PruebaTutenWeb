@@ -1,0 +1,31 @@
+<div>
+  <h1>Ingrese los datos correspondientes para buscar los datos referentes a un usuario</h1>
+  <form [formGroup]="searchUserForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="emailAdmin">Email Aministrador</label>
+        <input type="text" formControlName="emailAdmin" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.emailAdmin.errors }" />
+        <div *ngIf="submitted && f.emailAdmin.errors" class="invalid-feedback">
+          <div *ngIf="f.emailAdmin.errors.required">Email del administrador es requerido</div>
+        </div>
+      </div>
+      <div class="form-group">
+          <label for="emailUser">Email Usuario</label>
+          <input type="text" formControlName="emailUser" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.emailUser.errors }" />
+          <div *ngIf="submitted && f.emailUser.errors" class="invalid-feedback">
+            <div *ngIf="f.emailUser.errors.required">Email del usuario es requerido</div>
+          </div>
+        </div>
+      <div class="form-group">
+          <label for="app">App</label>
+          <input type="text" formControlName="app" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.app.errors }" />
+          <div *ngIf="submitted && f.app.errors" class="invalid-feedback">
+            <div *ngIf="f.app.errors.required">App es requerido</div>
+          </div>
+        </div>
+      <div class="form-group text-center">
+        <button [disabled]="loading" class="btn btn-primary">Buscar</button>
+        <img width="30px" height="30px" *ngIf="loading" src="https://myaccount.wigan.gov.uk/web/Images/loader.gif"/>
+      </div>
+      <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+    </form>
+</div>
