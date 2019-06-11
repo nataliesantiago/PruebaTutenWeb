@@ -2,14 +2,14 @@
   <h1>Ingrese los datos correspondientes para buscar los datos referentes a un usuario</h1>
   <form [formGroup]="searchUserForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="emailAdmin">Email Aministrador</label>
+        <label for="emailAdmin">Email del Aministrador</label>
         <input type="text" formControlName="emailAdmin" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.emailAdmin.errors }" />
         <div *ngIf="submitted && f.emailAdmin.errors" class="invalid-feedback">
           <div *ngIf="f.emailAdmin.errors.required">Email del administrador es requerido</div>
         </div>
       </div>
       <div class="form-group">
-          <label for="emailUser">Email Usuario</label>
+          <label for="emailUser">Email del Usuario</label>
           <input type="text" formControlName="emailUser" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.emailUser.errors }" />
           <div *ngIf="submitted && f.emailUser.errors" class="invalid-feedback">
             <div *ngIf="f.emailUser.errors.required">Email del usuario es requerido</div>
@@ -28,4 +28,9 @@
       </div>
       <div *ngIf="error" class="alert alert-danger">{{error}}</div>
     </form>
+</div>
+
+<div>
+  <h2>Resultados</h2>
+  <!-- <app-grid-data></app-grid-data> -->
 </div>

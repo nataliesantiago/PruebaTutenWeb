@@ -11,16 +11,19 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getParamsHeader(password, app): HttpHeaders {
+  getParamsHeader(emailAdmin: string, app: string): HttpHeaders {
     return new HttpHeaders({
       'Accept': 'application/json',
-      'password': password,
+      'adminemail': emailAdmin,
+      'token': this.getToken(),
       'app': app
     });
   }
 
-  getData(email: string, codeCity: number, codeOffice: number){
-    return this.http.get<any>(`${environment.apiUrl}/${email}?current=true`, {headers: this.headers})
+  getData(emailUser: string, emailAdmin: string, app: string){
+    return this.http.get<any>(`${environment.apiUrl}/${emailUser}/bookings?current=true`, {
+      headers: this.getParamsHeader(emailAdmin, app)
+    })
       .pipe(
         map(response => {
           return response;
