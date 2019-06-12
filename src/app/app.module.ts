@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { routing } from './routes/app.routing';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -21,7 +22,8 @@ import { GridDataComponent } from './components/grid-data/grid-data.component';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
-    routing
+    routing,
+    NgxDatatableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -32,5 +32,57 @@
 
 <div>
   <h2>Resultados</h2>
-  <!-- <app-grid-data></app-grid-data> -->
+  <ngx-datatable
+      class="material"
+      [rows]="rows"
+      [reorderable]="reorderable"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="'auto'"
+      [columnMode]="'force'">
+      <ngx-datatable-column  name="bookingId">
+        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+          <span (click)="sort()">{{column.name}}</span>
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.id}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Cliente">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          <span>{{column.name}}</span>
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.client}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Fecha de Creación">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          <span>{{column.name}}</span>
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.createDate}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Dirección">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          <span>{{column.name}}</span>
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.address}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Precio">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          <span>{{column.name}}</span>
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.price}}
+        </ng-template>
+      </ngx-datatable-column>
+  </ngx-datatable>
 </div>
