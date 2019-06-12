@@ -1,88 +1,113 @@
-<div>
-  <h1>Ingrese los datos correspondientes para buscar los datos referentes a un usuario</h1>
-  <form [formGroup]="searchUserForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="emailAdmin">Email del Aministrador</label>
-        <input type="text" formControlName="emailAdmin" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.emailAdmin.errors }" />
-        <div *ngIf="submitted && f.emailAdmin.errors" class="invalid-feedback">
-          <div *ngIf="f.emailAdmin.errors.required">Email del administrador es requerido</div>
-        </div>
-      </div>
-      <div class="form-group">
-          <label for="emailUser">Email del Usuario</label>
-          <input type="text" formControlName="emailUser" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.emailUser.errors }" />
-          <div *ngIf="submitted && f.emailUser.errors" class="invalid-feedback">
-            <div *ngIf="f.emailUser.errors.required">Email del usuario es requerido</div>
+<div class="container">
+    <div class="container-search">
+      <h3>Buscar datos referentes a un usuario</h3>
+      <form [formGroup]="searchUserForm" (ngSubmit)="onSubmit()" class="form-search">
+        <div class="form-group-search">
+            <input type="text" formControlName="emailUser" class="input-text" [ngClass]="{ 'is-invalid': submitted && f.emailUser.errors }" placeholder="Email del usuario"/>
+            <div *ngIf="submitted && f.emailUser.errors" class="error">
+              <div *ngIf="f.emailUser.errors.required">Email del usuario es requerido</div>
+            </div>
           </div>
-        </div>
-      <div class="form-group">
-          <label for="app">App</label>
-          <input type="text" formControlName="app" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.app.errors }" />
-          <div *ngIf="submitted && f.app.errors" class="invalid-feedback">
-            <div *ngIf="f.app.errors.required">App es requerido</div>
+        <div class="form-group-search">
+            <input type="text" formControlName="app" class="input-text" [ngClass]="{ 'is-invalid': submitted && f.app.errors }" placeholder="App"/>
+            <div *ngIf="submitted && f.app.errors" class="error">
+              <div *ngIf="f.app.errors.required">App es requerido</div>
+            </div>
           </div>
+        <div class="form-group-search">
+          <button [disabled]="loading" class="btn-blue">Buscar</button>
+          <img width="30px" height="30px" *ngIf="loading" src="https://myaccount.wigan.gov.uk/web/Images/loader.gif"/>
         </div>
-      <div class="form-group text-center">
-        <button [disabled]="loading" class="btn btn-primary">Buscar</button>
-        <img width="30px" height="30px" *ngIf="loading" src="https://myaccount.wigan.gov.uk/web/Images/loader.gif"/>
-      </div>
-      <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-    </form>
-</div>
+      </form>
+      <div *ngIf="error" class="alert error">{{error}}</div>
+    </div>
+      
+      <div>
+        <h3>Resultados</h3>
 
-<div>
-  <h2>Resultados</h2>
-  <ngx-datatable
-      class="material"
-      [rows]="rows"
-      [reorderable]="reorderable"
-      [headerHeight]="50"
-      [footerHeight]="50"
-      [rowHeight]="'auto'"
-      [columnMode]="'force'">
-      <ngx-datatable-column  name="bookingId">
-        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-          <span (click)="sort()">{{column.name}}</span>
-        </ng-template>
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.id}}
-        </ng-template>
-      </ngx-datatable-column>
-
-      <ngx-datatable-column name="Cliente">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          <span>{{column.name}}</span>
-        </ng-template>
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.client}}
-        </ng-template>
-      </ngx-datatable-column>
-
-      <ngx-datatable-column name="Fecha de Creación">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          <span>{{column.name}}</span>
-        </ng-template>
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.createDate}}
-        </ng-template>
-      </ngx-datatable-column>
-
-      <ngx-datatable-column name="Dirección">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          <span>{{column.name}}</span>
-        </ng-template>
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.address}}
-        </ng-template>
-      </ngx-datatable-column>
-
-      <ngx-datatable-column name="Precio">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          <span>{{column.name}}</span>
-        </ng-template>
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.price}}
-        </ng-template>
-      </ngx-datatable-column>
-  </ngx-datatable>
+        <div class="container-filter">
+          <div class="filter">
+            <p>Filtrar por BookingId</p>
+            <div class="form-filter">
+              <ng-select 
+                [items]="optionsFilter"
+                [searchable]="false"
+                placeholder="Filtro"
+                class="filter">
+              </ng-select>
+              <input type="text">
+              <button class="btn-blue">Filtrar</button>
+            </div>
+          </div>
+          <div class="filter">
+              <p>Filtrar por BookingId</p>
+              <div class="form-filter">
+                  <ng-select 
+                  [items]="optionsFilter"
+                  [searchable]="false"
+                  placeholder="Filtro"
+                  class="filter">
+                </ng-select>
+                <input type="text">
+                <button class="btn-blue">Filtrar</button>
+              </div>
+            </div>
+        </div>
+        <!-- <app-grid-data [results]="rows"></app-grid-data> -->
+        <ngx-datatable
+          class="material"
+          [rows]="rows"
+          [reorderable]="reorderable"
+          [headerHeight]="50"
+          [footerHeight]="50"
+          [rowHeight]="'auto'"
+          [columnMode]="'force'"
+          [messages]="messages"
+          prop="BookingId">
+          <ngx-datatable-column  name="BookingId">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+              <span (click)="sort()">{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.id}}
+            </ng-template>
+          </ngx-datatable-column>
+    
+          <ngx-datatable-column name="Cliente">
+            <ng-template let-column="column" ngx-datatable-header-template>
+              <span>{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.client}}
+            </ng-template>
+          </ngx-datatable-column>
+    
+          <ngx-datatable-column name="Fecha de Creación">
+            <ng-template let-column="column" ngx-datatable-header-template>
+              <span>{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.createDate}}
+            </ng-template>
+          </ngx-datatable-column>
+    
+          <ngx-datatable-column name="Dirección">
+            <ng-template let-column="column" ngx-datatable-header-template>
+              <span>{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.address}}
+            </ng-template>
+          </ngx-datatable-column>
+    
+          <ngx-datatable-column name="Precio">
+            <ng-template let-column="column" ngx-datatable-header-template>
+              <span>{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.price}}
+            </ng-template>
+          </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
 </div>

@@ -30,7 +30,11 @@ export class AuthenticationService {
     }
     return this.http.put<any>(`${environment.apiUrl}/${email}`, BODY, HEADERS).pipe(map(response => {
           if(response){
-            localStorage.setItem('currentUser', response.sessionTokenBck);
+            let user = {
+              "token": response.sessionTokenBck,
+              "email": email
+            }
+            localStorage.setItem('currentUser', JSON.stringify(user));
           }
 
           return response;

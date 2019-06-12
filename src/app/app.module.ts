@@ -2,9 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { routing } from './routes/app.routing';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -23,7 +24,8 @@ import { GridDataComponent } from './components/grid-data/grid-data.component';
     HttpClientModule,
     ReactiveFormsModule,
     routing,
-    NgxDatatableModule
+    NgxDatatableModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

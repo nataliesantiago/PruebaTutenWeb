@@ -1,0 +1,42 @@
+.container-login{
+    height: 100vh;
+    width: 100%;
+    background-color: #f7f7f7;
+    .login-card{
+        width: 30%;
+        margin: 0 auto;
+        top: 50%;
+        transform: translateY(-50%);
+        position: relative;
+        background-color: #ffffff;
+        border: 1px solid #ededed;
+        padding-bottom: 4vh;
+        h2{
+            padding: 4vh 0;
+            // color: #777777;
+            // color: #2CBDBD;
+            color: #6495ED;
+            font-size: 2.500em;
+            font-weight: bold;
+            text-align: center;
+        }
+        form{
+            width: 80%;
+            margin: 0 auto;
+        }
+        .input-login{
+            margin-bottom: 3vh;
+        }
+        .button-login{
+            text-align: center;
+            .btn-blue{
+                width: 50%;
+                margin: 0 auto;
+            }
+        }
+        .loader{
+            text-align: center;
+            padding-top: 1vh;
+        }
+    }
+}

@@ -20,9 +20,9 @@ export class DataService {
     });
   }
 
-  getData(emailUser: string, emailAdmin: string, app: string){
+  getData(emailUser: string, app: string){
     return this.http.get<any>(`${environment.apiUrl}/${emailUser}/bookings?current=true`, {
-      headers: this.getParamsHeader(emailAdmin, app)
+      headers: this.getParamsHeader(this.getEmailAdmin(), app)
     })
       .pipe(
         map(response => {
@@ -32,7 +32,11 @@ export class DataService {
   }
 
   public getToken(): string {
-    return localStorage.getItem('currentUser');
+    return JSON.parse(localStorage.getItem('currentUser')).token;
+  }
+
+  public getEmailAdmin(): string {
+    return JSON.parse(localStorage.getItem('currentUser')).email;
   }
 
 }

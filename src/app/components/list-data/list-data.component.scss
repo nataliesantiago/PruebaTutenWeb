@@ -1,4 +1,42 @@
-@import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
+h3{
+    color: #6495ED;
+    font-size: 2.000em;
+    font-weight: bold;
+    margin-bottom: 2vh;
+}
+.container-search{
+    margin: 5vh 0;
+    .form-search{
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        .form-group-search{
+            width: 30%;
+            .btn-blue{
+                width: 30%;
+                margin-right: 3%;
+            }
+        }
+    }
+}
+
+.container-filter{
+    display: flex;
+    align-items: flex-start;
+    // justify-content: space-between;
+    .form-filter{
+        display: flex;
+        align-items: flex-start;
+        // justify-content: space-between;
+        .filter{
+            width: 50%;
+        }
+        input{
+            width: 50%;
+        }
+    }
+}

@@ -16,17 +16,22 @@ export class ListDataComponent implements OnInit {
   error;
   rows;
   columns;
-
+  messages;
+  optionsFilter: any[] = [];
  
   constructor(private formBuilder: FormBuilder, private _dataService: DataService) { }
+  
 
   ngOnInit() {
     this.searchUserForm = this.formBuilder.group({
-      emailAdmin: ['', Validators.required],
       emailUser: ['', Validators.required],
       app: ['', Validators.required]
     });
-
+    this.messages = {
+      emptyMessage:'No hay resultados',
+      totalMessage: 'Total'
+    }
+    this.optionsFilter = ["Like", "y/o", ">=", "<="];
   }
 
   get f(){
@@ -42,7 +47,7 @@ export class ListDataComponent implements OnInit {
 
     this.loading = true;
 
-    this._dataService.getData(this.f.emailUser.value, this.f.emailAdmin.value, this.f.app.value).subscribe(
+    this._dataService.getData(this.f.emailUser.value, this.f.app.value).subscribe(
         data => {
           console.log(data)
           this.error = false;

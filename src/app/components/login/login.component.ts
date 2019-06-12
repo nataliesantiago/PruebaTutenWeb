@@ -3,7 +3,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from './../../services/authentication.service';
 
-@Component({templateUrl: 'login.component.html'})
+@Component({selector: 'app-login',
+templateUrl: './login.component.html',
+styleUrls: ['./login.component.scss']})
+
 export class LoginComponent implements OnInit{
 
   loginForm: FormGroup;
@@ -51,7 +54,7 @@ export class LoginComponent implements OnInit{
           }
         },
         error => {
-          this.error = error.error;
+          this.error = "El usuario no existe";
           this.loading = false;
         }
       )
