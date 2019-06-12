@@ -10,15 +10,26 @@ h3{
 }
 .container-search{
     margin: 5vh 0;
-    .form-search{
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        .form-group-search{
-            width: 30%;
-            .btn-blue{
+    background-color: #E8F5FE;
+    padding: 2vh;
+    border-radius: 8px;
+    .wrapper-form-search{
+        background-color: #ffffff;
+        h3{
+            border-bottom: 1px solid #E8E8E8;
+            padding: 2vh 2vw;
+        }
+        .form-search{
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 2vh 2vw;
+            .form-group-search{
                 width: 30%;
-                margin-right: 3%;
+                .btn-blue{
+                    width: 30%;
+                    margin-right: 3%;
+                }
             }
         }
     }
@@ -27,16 +38,29 @@ h3{
 .container-filter{
     display: flex;
     align-items: flex-start;
-    // justify-content: space-between;
-    .form-filter{
-        display: flex;
-        align-items: flex-start;
-        // justify-content: space-between;
-        .filter{
-            width: 50%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 2vh;
+    .filter{
+        width: 45%;
+        margin-bottom: 2vh;
+        .form-filter{
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            .select-filter{
+                width: 48%;
+            }
+            input{
+                width: 48%;
+            }
         }
-        input{
-            width: 50%;
+    }
+    .button-filter{
+        width: 100%;
+        text-align: center;
+        .btn-blue{
+            width: 20%;
         }
     }
 }

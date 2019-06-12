@@ -1,25 +1,27 @@
 <div class="container">
     <div class="container-search">
-      <h3>Buscar datos referentes a un usuario</h3>
-      <form [formGroup]="searchUserForm" (ngSubmit)="onSubmit()" class="form-search">
-        <div class="form-group-search">
-            <input type="text" formControlName="emailUser" class="input-text" [ngClass]="{ 'is-invalid': submitted && f.emailUser.errors }" placeholder="Email del usuario"/>
-            <div *ngIf="submitted && f.emailUser.errors" class="error">
-              <div *ngIf="f.emailUser.errors.required">Email del usuario es requerido</div>
+      <div class="wrapper-form-search">
+          <h3>Buscar datos referentes a un usuario</h3>
+          <form [formGroup]="searchUserForm" (ngSubmit)="onSubmit()" class="form-search">
+            <div class="form-group-search">
+                <input type="text" formControlName="emailUser" class="input-text" [ngClass]="{ 'is-invalid': submitted && f.emailUser.errors }" placeholder="Email del usuario"/>
+                <div *ngIf="submitted && f.emailUser.errors" class="error">
+                  <div *ngIf="f.emailUser.errors.required">Email del usuario es requerido</div>
+                </div>
+              </div>
+            <div class="form-group-search">
+                <input type="text" formControlName="app" class="input-text" [ngClass]="{ 'is-invalid': submitted && f.app.errors }" placeholder="App"/>
+                <div *ngIf="submitted && f.app.errors" class="error">
+                  <div *ngIf="f.app.errors.required">App es requerido</div>
+                </div>
+              </div>
+            <div class="form-group-search">
+              <button [disabled]="loading" class="btn-blue">Buscar</button>
+              <img width="30px" height="30px" *ngIf="loading" src="https://myaccount.wigan.gov.uk/web/Images/loader.gif"/>
             </div>
-          </div>
-        <div class="form-group-search">
-            <input type="text" formControlName="app" class="input-text" [ngClass]="{ 'is-invalid': submitted && f.app.errors }" placeholder="App"/>
-            <div *ngIf="submitted && f.app.errors" class="error">
-              <div *ngIf="f.app.errors.required">App es requerido</div>
-            </div>
-          </div>
-        <div class="form-group-search">
-          <button [disabled]="loading" class="btn-blue">Buscar</button>
-          <img width="30px" height="30px" *ngIf="loading" src="https://myaccount.wigan.gov.uk/web/Images/loader.gif"/>
-        </div>
-      </form>
-      <div *ngIf="error" class="alert error">{{error}}</div>
+          </form>
+          <div *ngIf="error" class="alert error">{{error}}</div>
+      </div>
     </div>
       
       <div>
@@ -33,10 +35,9 @@
                 [items]="optionsFilter"
                 [searchable]="false"
                 placeholder="Filtro"
-                class="filter">
+                class="select-filter">
               </ng-select>
-              <input type="text">
-              <button class="btn-blue">Filtrar</button>
+              <input class="input-text" type="text" placeholder="Booking Id">
             </div>
           </div>
           <div class="filter">
@@ -46,12 +47,14 @@
                   [items]="optionsFilter"
                   [searchable]="false"
                   placeholder="Filtro"
-                  class="filter">
+                  class="select-filter">
                 </ng-select>
-                <input type="text">
-                <button class="btn-blue">Filtrar</button>
+                <input class="input-text" type="text" placeholder="Precio">
               </div>
-            </div>
+          </div>
+          <div class="button-filter">
+            <button class="btn-blue">Filtrar</button>
+          </div>
         </div>
         <!-- <app-grid-data [results]="rows"></app-grid-data> -->
         <ngx-datatable
