@@ -11,8 +11,8 @@ import { DataService } from './../../services/data.service';
 export class ListDataComponent implements OnInit {
 
   searchUserForm: FormGroup;
-  submitted = false;
-  loading = false;
+  submitted: any = false;
+  loading: any = false;
   error: any;
   rows: any;
   messages: any;
@@ -22,6 +22,7 @@ export class ListDataComponent implements OnInit {
   inpuId: any;
   inputPrice: any;
   copyData: any;
+  isRows: any = false;
  
   constructor(private formBuilder: FormBuilder, private _dataService: DataService) { }
   
@@ -52,6 +53,7 @@ export class ListDataComponent implements OnInit {
     this.loading = true;
 
     this._dataService.getData(this.f.emailUser.value, this.f.app.value).subscribe(data => {
+          this.loading = false;
           this.error = false;
           this.rows = [...data.map(book => {
             return { "id": book.bookingId,
@@ -63,6 +65,11 @@ export class ListDataComponent implements OnInit {
                     };
           })];
           this.copyData = [...this.rows];
+          if(this.rows){
+            this.isRows = true;
+          }else{
+            this.isRows = false;
+          }
         },
         error => {
           if(error){
@@ -76,8 +83,13 @@ export class ListDataComponent implements OnInit {
   filterTable(){
     // hacer validacion de filtros si viene id validar id, si viene price validar price
     this.rows = this.copyData;
-    this.rows = this.switchFilter(this.filterId, 'id', this.inpuId);
-    this.rows = this.switchFilter(this.filterPrice, 'price', this.inputPrice);
+    if(this.filterId !== undefined){
+      this.rows = this.switchFilter(this.filterId, 'id', this.inpuId);
+    }
+    if(this.filterPrice !== undefined){
+      this.rows = this.switchFilter(this.filterPrice, 'price', this.inputPrice);
+    }
+    console.log(this.filterId)
   }
 
   switchFilter(valueFilter, propertyName, valueInput){

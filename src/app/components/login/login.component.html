@@ -24,7 +24,7 @@
           <button [disabled]="loading" class="btn-blue">Login</button>
         </div>
         <div class="loader">
-            <img width="30px" height="30px" *ngIf="loading" src="https://myaccount.wigan.gov.uk/web/Images/loader.gif"/>
+            <img width="30" height="30" *ngIf="loading" src="assets/images/loading.gif"/>
         </div>
         
         <div *ngIf="error" class="alert error">{{error}}</div>

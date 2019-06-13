@@ -17,7 +17,7 @@
               </div>
             <div class="form-group-search">
               <button [disabled]="loading" class="btn-blue">Buscar</button>
-              <img width="30px" height="30px" *ngIf="loading" src="https://myaccount.wigan.gov.uk/web/Images/loader.gif"/>
+              <img width="30px" height="30px" *ngIf="loading" src="assets/images/loading.gif"/>
             </div>
           </form>
           <div *ngIf="error" class="alert error">{{error}}</div>
@@ -26,8 +26,7 @@
       
       <div>
         <h3>Resultados</h3>
-
-        <div class="container-filter">
+        <div class="container-filter" *ngIf="isRows">
           <div class="filter">
             <p>Filtrar por BookingId</p>
             <div class="form-filter">
@@ -35,6 +34,7 @@
                 [items]="optionsFilter"
                 [searchable]="false"
                 placeholder="Filtro"
+                [clearable]="false"
                 [(ngModel)]="filterId"
                 class="select-filter">
               </ng-select>
@@ -48,6 +48,7 @@
                   [items]="optionsFilter"
                   [searchable]="false"
                   placeholder="Filtro"
+                  [clearable]="false"
                   [(ngModel)]="filterPrice"
                   class="select-filter">
                 </ng-select>
@@ -58,7 +59,8 @@
             <button class="btn-blue" (click)="filterTable()">Filtrar</button>
           </div>
         </div>
-        <!-- <app-grid-data [results]="rows"></app-grid-data> -->
+        
+
         <ngx-datatable
           class="material"
           [rows]="rows"
