@@ -13,11 +13,15 @@ export class ListDataComponent implements OnInit {
   searchUserForm: FormGroup;
   submitted = false;
   loading = false;
-  error;
-  rows;
-  columns;
-  messages;
+  error: any;
+  rows: any;
+  messages: any;
   optionsFilter: any[] = [];
+  filterId: any;
+  filterPrice: any;
+  inpuId: any;
+  inputPrice: any;
+  copyData: any;
  
   constructor(private formBuilder: FormBuilder, private _dataService: DataService) { }
   
@@ -31,7 +35,7 @@ export class ListDataComponent implements OnInit {
       emptyMessage:'No hay resultados',
       totalMessage: 'Total'
     }
-    this.optionsFilter = ["Like", "y/o", ">=", "<="];
+    this.optionsFilter = ["Like", ">=", "<="];
   }
 
   get f(){
@@ -47,19 +51,18 @@ export class ListDataComponent implements OnInit {
 
     this.loading = true;
 
-    this._dataService.getData(this.f.emailUser.value, this.f.app.value).subscribe(
-        data => {
-          console.log(data)
+    this._dataService.getData(this.f.emailUser.value, this.f.app.value).subscribe(data => {
           this.error = false;
-          this.rows = data.map(book => {
+          this.rows = [...data.map(book => {
             return { "id": book.bookingId,
                      "client": `${book.tutenUserClient.firstName} ${book.tutenUserClient.lastName}`,
                      "createDate": book.bookingTime,
                      "address": book.locationId.streetAddress,
                      "price": book.bookingPrice   
+                 
                     };
-          });
-        
+          })];
+          this.copyData = [...this.rows];
         },
         error => {
           if(error){
@@ -68,6 +71,38 @@ export class ListDataComponent implements OnInit {
           }
         }
       )
+  }
+
+  filterTable(){
+    // hacer validacion de filtros si viene id validar id, si viene price validar price
+    this.rows = this.copyData;
+    this.rows = this.switchFilter(this.filterId, 'id', this.inpuId);
+    this.rows = this.switchFilter(this.filterPrice, 'price', this.inputPrice);
+  }
+
+  switchFilter(valueFilter, propertyName, valueInput){
+    switch (valueFilter) {
+      case 'Like':
+        return this.rows.filter(book => {
+          return book[propertyName] == valueInput;
+        });
+        break;
+
+      case '>=':
+        return this.rows.filter(book => {
+          return book[propertyName] >= valueInput;
+        });
+        break;
+
+      case '<=':
+        return this.rows.filter(book => {
+          return book[propertyName] <= valueInput;
+        });
+        break;
+    
+      default:
+        break;
+    }
   }
 
 }

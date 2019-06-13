@@ -35,9 +35,10 @@
                 [items]="optionsFilter"
                 [searchable]="false"
                 placeholder="Filtro"
+                [(ngModel)]="filterId"
                 class="select-filter">
               </ng-select>
-              <input class="input-text" type="text" placeholder="Booking Id">
+              <input class="input-text" [(ngModel)]="inpuId" type="text" placeholder="Booking Id">
             </div>
           </div>
           <div class="filter">
@@ -47,13 +48,14 @@
                   [items]="optionsFilter"
                   [searchable]="false"
                   placeholder="Filtro"
+                  [(ngModel)]="filterPrice"
                   class="select-filter">
                 </ng-select>
-                <input class="input-text" type="text" placeholder="Precio">
+                <input class="input-text" [(ngModel)]="inputPrice" type="text" placeholder="Precio">
               </div>
           </div>
           <div class="button-filter">
-            <button class="btn-blue">Filtrar</button>
+            <button class="btn-blue" (click)="filterTable()">Filtrar</button>
           </div>
         </div>
         <!-- <app-grid-data [results]="rows"></app-grid-data> -->

@@ -7,18 +7,15 @@ h3{
     font-size: 2.000em;
     font-weight: bold;
     margin-bottom: 2vh;
+    border-bottom: 1px solid #E8E8E8;
+    padding: 2vh 10px;
+    width: auto;
+    display: inline-block;
 }
 .container-search{
     margin: 5vh 0;
-    background-color: #E8F5FE;
-    padding: 2vh;
-    border-radius: 8px;
     .wrapper-form-search{
         background-color: #ffffff;
-        h3{
-            border-bottom: 1px solid #E8E8E8;
-            padding: 2vh 2vw;
-        }
         .form-search{
             display: flex;
             align-items: flex-start;
@@ -42,17 +39,18 @@ h3{
     flex-wrap: wrap;
     margin-bottom: 2vh;
     .filter{
-        width: 45%;
+        width: 50%;
         margin-bottom: 2vh;
+        padding: 2%;
         .form-filter{
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
             .select-filter{
-                width: 48%;
+                width: 45%;
             }
             input{
-                width: 48%;
+                width: 45%;
             }
         }
     }
@@ -62,5 +60,16 @@ h3{
         .btn-blue{
             width: 20%;
         }
+    }
+}
+.ng-select{
+    &.ng-select-single{
+        .ng-select-container{
+            height: 45px;
+        }
+    } 
+    .ng-select-container{
+        border-radius: 0;
+        border: 1px solid #e9e9f0;
     }
 }
