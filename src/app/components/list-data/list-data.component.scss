@@ -100,6 +100,9 @@ h3{
         .ng-dropdown-panel-items{
             .ng-option{
                 color: #5b5b5f;
+                &.ng-option-selected{
+                    background-color: rgba(230,181,74, 0.4);
+                }
             }
             .ng-option.ng-option-marked{
                 background-color: rgba(154,153,158, 0.4);
