@@ -21,7 +21,6 @@ button, a{
     margin: 0;
     border: none;
     line-height: 40px;
-    border-radius: 5px;
     color: #212529;
     background-color: #b7e0fc;
     border-color: #abdafb;
@@ -38,16 +37,14 @@ button, a{
     font-size: 1em;
 }
 .input-text{
-    border-bottom: 2px solid #e9e9f0;
     color: #43425d;
     width: 100%;
-    border: none;
-    border-bottom: 1px solid #e9e9f0;
+    border: 1px solid #e9e9f0;
     padding: 10px 7px;
     font-size: .938em;
     font-weight: 400;
     outline: 0;
     &:focus{
-        border-bottom: 3px solid #e9e9f0;
+        border: 2px solid #e9e9f0;
     }
 }
