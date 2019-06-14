@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from './../../services/data.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-list-data',
@@ -55,10 +56,11 @@ export class ListDataComponent implements OnInit {
     this._dataService.getData(this.f.emailUser.value, this.f.app.value).subscribe(data => {
           this.loading = false;
           this.error = false;
+          console.log(data)
           this.rows = [...data.map(book => {
             return { "id": book.bookingId,
                      "client": `${book.tutenUserClient.firstName} ${book.tutenUserClient.lastName}`,
-                     "createDate": book.bookingTime,
+                     "createDate": moment(book.bookingTime).format('DD-MM-YYYY'),
                      "address": book.locationId.streetAddress,
                      "price": book.bookingPrice   
                  
