@@ -18,6 +18,8 @@ Para el desarrollo de la prueba se utilizaron los siguientes componentes
 
 Una vez en la carpeta ejecutar los siguientes comandos
 
+# npm install -g @angular/cli
+
 # npm install
 
 # ng serve
